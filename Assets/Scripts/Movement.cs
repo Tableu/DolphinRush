@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,18 +26,24 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (_speed.y > 0)
+        float angle = model.transform.eulerAngles.x;
+        if (_speed.y != 0)
         {
-            if (model.transform.rotation.eulerAngles.x >= 360-data.Angle || model.transform.rotation.eulerAngles.x <= data.Angle+1)
+            if (_speed.y > 0)
             {
-                model.transform.Rotate(Vector3.left, data.RotationSpeed * Time.deltaTime);
+                if (angle >= 360 - data.Angle ||
+                    angle <= data.Angle + 3)
+                {
+                    model.transform.Rotate(Vector3.left, data.RotationSpeed * Time.deltaTime);
+                }
             }
-        }
-        else
-        {
-            if (model.transform.rotation.eulerAngles.x <= data.Angle || model.transform.rotation.eulerAngles.x >= 360-data.Angle-1)
+            else
             {
-                model.transform.Rotate(Vector3.right, data.RotationSpeed * Time.deltaTime);   
+                if (angle <= data.Angle ||
+                    angle >= 360 - data.Angle - 3)
+                {
+                    model.transform.Rotate(Vector3.right, data.RotationSpeed * Time.deltaTime);
+                }
             }
         }
     }
@@ -48,5 +55,17 @@ public class Movement : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*data.MaxSpeed);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        rigidbody.velocity = Vector3.zero;
+        _speed = Vector3.zero;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        rigidbody.velocity = Vector3.zero;
+        _speed = Vector3.zero;
     }
 }
