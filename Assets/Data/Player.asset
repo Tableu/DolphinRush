@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   speed: 15
-  rotationSpeed: 50
+  maxSpeed: 20
+  rotationSpeed: 70
   angle: 45
