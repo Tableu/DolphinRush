@@ -1,37 +1,52 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public float VerticalSpeed;
-    public float SwitchSpeed;
     [SerializeField] private new Rigidbody rigidbody;
+    [SerializeField] private PlayerData data;
+    [SerializeField] private GameObject model;
     private PlayerInputActions _inputActions;
     private Vector3 _speed;
-
     private void Start()
     {
-        _speed = new Vector3(0, VerticalSpeed,0);
+        _speed = new Vector3(0, data.Speed,0);
         _inputActions = new PlayerInputActions();
         _inputActions.Enable();
         _inputActions.Movement.Down.started += delegate(InputAction.CallbackContext context)
         {
-            _speed = new Vector3(0, (-1)*VerticalSpeed, 0);
-            Debug.Log("debug");
+            _speed = new Vector3(0, (-1)*data.Speed, 0);
         };
         _inputActions.Movement.Down.canceled += delegate(InputAction.CallbackContext context)
         {
-            _speed = new Vector3(0, VerticalSpeed, 0);
+            _speed = new Vector3(0, data.Speed, 0);
         };
+    }
+
+    private void Update()
+    {
+        if (_speed.y > 0)
+        {
+            if (model.transform.rotation.eulerAngles.x >= 360-data.Angle || model.transform.rotation.eulerAngles.x <= data.Angle+1)
+            {
+                model.transform.Rotate(Vector3.left, data.RotationSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            if (model.transform.rotation.eulerAngles.x <= data.Angle || model.transform.rotation.eulerAngles.x >= 360-data.Angle-1)
+            {
+                model.transform.Rotate(Vector3.right, data.RotationSpeed * Time.deltaTime);   
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        rigidbody.AddForce(_speed, ForceMode.Impulse);
-        if (Mathf.Abs(rigidbody.velocity.y) > VerticalSpeed)
+        rigidbody.AddForce(_speed, ForceMode.Force);
+        if (Mathf.Abs(rigidbody.velocity.y) > data.MaxSpeed)
         {
-            rigidbody.velocity = new Vector3(rigidbody.velocity.x, Mathf.Sign(rigidbody.velocity.y)*VerticalSpeed);
+            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*data.MaxSpeed);
         }
     }
 }
