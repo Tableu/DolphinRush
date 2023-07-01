@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,26 +27,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        float angle = model.transform.eulerAngles.x;
-        if (_speed.y != 0)
-        {
-            if (_speed.y > 0)
-            {
-                if (angle >= 360 - data.Angle ||
-                    angle <= data.Angle + 3)
-                {
-                    model.transform.Rotate(Vector3.left, data.RotationSpeed * Time.deltaTime);
-                }
-            }
-            else
-            {
-                if (angle <= data.Angle ||
-                    angle >= 360 - data.Angle - 3)
-                {
-                    model.transform.Rotate(Vector3.right, data.RotationSpeed * Time.deltaTime);
-                }
-            }
-        }
+        model.transform.rotation = Quaternion.Euler(data.Angle*-1*(rigidbody.velocity.y/data.MaxSpeed),model.transform.rotation.eulerAngles.y,model.transform.rotation.eulerAngles.z);
     }
 
     private void FixedUpdate()
@@ -59,13 +41,17 @@ public class Movement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        rigidbody.velocity = Vector3.zero;
-        _speed = Vector3.zero;
+        if (rigidbody.velocity.y > 0)
+        {
+            _speed = new Vector3(0, (-1) * data.Speed, 0);
+        }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerExit(Collider other)
     {
-        rigidbody.velocity = Vector3.zero;
-        _speed = Vector3.zero;
+        if (rigidbody.velocity.y < 0)
+        {
+            _speed = new Vector3(0, data.Speed, 0);
+        }
     }
 }
