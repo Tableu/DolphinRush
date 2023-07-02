@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,9 +14,13 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject spacePrefab;
     [SerializeField] private Death death;
     [SerializeField] private ObstacleSpawner spawner;
+    [SerializeField] private TextMeshProUGUI score;
+    [SerializeField] private AudioClip collectableAudio;
     private PlayerInputActions _inputActions;
     private Vector3 _speed;
     private bool _hitBarrier;
+    private int _scoreTick = 4;
+    private int _tick = 4;
     private void Start()
     {
         _speed = new Vector3(0, data.Speed,0);
@@ -52,7 +57,16 @@ public class Movement : MonoBehaviour
         rigidbody.AddForce(_speed, ForceMode.Force);
         if (Mathf.Abs(rigidbody.velocity.y) > data.MaxSpeed)
         {
-            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*data.MaxSpeed);
+            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y) * data.MaxSpeed);
+        }
+
+        if (_tick*SpeedManager.Instance.SpeedMultiplier > _scoreTick){
+            score.text = (Convert.ToInt32(score.text) + 1).ToString();
+            _tick = 0;
+        }
+        else
+        {
+            _tick++;
         }
     }
 
@@ -71,6 +85,16 @@ public class Movement : MonoBehaviour
             death.enabled = true;
             spawner.enabled = false;
             Destroy(gameObject);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Collectible"))
+        {
+            score.text = (Convert.ToInt32(score.text) + 100).ToString();
+            audioSource.clip = collectableAudio;
+            audioSource.Play();
         }
     }
 

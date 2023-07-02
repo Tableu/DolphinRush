@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14688449a5d85e44795d49adcf8b4e49, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14688449a5d85e44795d49adcf8b4e49, type: 3}
       propertyPath: m_LocalScale.x
@@ -142,7 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  Rigidbody: {fileID: 0}
+  collectiblePositions:
+  - {x: -10.98, y: 1.39, z: 0}
+  - {x: -12.7, y: 2.1, z: 0}
+  data: {fileID: 11400000, guid: 6137d6f2685502149b21a50a23e461da, type: 2}
 --- !u!1 &6815910245766760295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1364076815127437966, guid: 14688449a5d85e44795d49adcf8b4e49, type: 3}

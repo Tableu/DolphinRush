@@ -141,7 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  Rigidbody: {fileID: 0}
+  collectiblePositions:
+  - {x: -10.98, y: 1.39, z: 0}
+  - {x: -12.7, y: 2.1, z: 0}
+  data: {fileID: 11400000, guid: 6137d6f2685502149b21a50a23e461da, type: 2}
 --- !u!1 &6429234385765228301
 GameObject:
   m_ObjectHideFlags: 0

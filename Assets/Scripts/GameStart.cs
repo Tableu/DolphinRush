@@ -14,6 +14,7 @@ public class GameStart : MonoBehaviour
     [SerializeField] private float menuMusicDelay;
     [SerializeField] private TextMeshProUGUI spaceText;
     [SerializeField] private MoveTitle title;
+    [SerializeField] private GameObject score;
 
     private PlayerInputActions _inputActions;
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class GameStart : MonoBehaviour
         gameSource.Play();
         StartCoroutine(SpeedManager.Instance.StartSpeed());
         Destroy(title.gameObject);
+        score.SetActive(true);
         yield return new WaitForSeconds(5);
         obstacleSpawner.enabled = true;
     }

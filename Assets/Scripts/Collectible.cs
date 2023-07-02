@@ -1,27 +1,17 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class MoveObject : MonoBehaviour
+public class Collectible : MonoBehaviour
 {
     public float Speed;
-    public Vector3 Offset;
-    [SerializeField] private List<Vector3> collectiblePositions;
-    [SerializeField] private CollectibleData data;
 
     private void Start()
     {
         SpeedManager.Instance.SpeedChanged += ChangeSpeed;
-        if (collectiblePositions.Count > 0)
-        {
-            int index = Random.Range(0, collectiblePositions.Count);
-            Vector3 pos = collectiblePositions[index];
-            var collectible = Instantiate(data.GetRandomCollectible(), transform.position+pos-Offset, Quaternion.identity);
-            collectible.GetComponent<Collectible>().Speed = Speed;
-        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         var transform1 = transform;
@@ -42,5 +32,10 @@ public class MoveObject : MonoBehaviour
     private void OnDisable()
     {
         SpeedManager.Instance.SpeedChanged -= ChangeSpeed;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
     }
 }

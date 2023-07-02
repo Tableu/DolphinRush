@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Barrier
+  - Collectible
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Mountains
   - Player
   - Barriers
-  - 
+  - Collectibles
   - 
   - 
   - 
