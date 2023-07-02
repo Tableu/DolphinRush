@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 105945521}
   - component: {fileID: 105945520}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,12 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 2100000, guid: 6a7a9c2132fef784f84ac75da2846677, type: 2}
+  - {fileID: 2100000, guid: 11a1e4f68e1da704a8a196a1831bae52, type: 2}
+  - {fileID: 2100000, guid: be0a9e20d21895a4ea4886635a09135c, type: 2}
+  - {fileID: 2100000, guid: b2ddde46e55e3654cbd92ad41e3eba58, type: 2}
+  - {fileID: 2100000, guid: b039106e079dbf241b607935ebcf02e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -226,7 +231,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c158c7d1ad49a0942bac9cc57d0776c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: []
+  scrollSpeed:
+  - {x: 0.1, y: 0}
+  - {x: 0.2, y: 0}
+  - {x: 0.4, y: 0}
+  - {x: 0.6, y: 0}
+  - {x: 0.8, y: 0}
   EnableBackground: 1
 --- !u!4 &105945524
 Transform:
@@ -236,8 +246,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105945519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9092, y: -0.1642, z: 2.9746118}
-  m_LocalScale: {x: 90, y: 44, z: 1}
+  m_LocalPosition: {x: 3.6571, y: 4.3857, z: 2.9746118}
+  m_LocalScale: {x: 117.11822, y: 61.671936, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
