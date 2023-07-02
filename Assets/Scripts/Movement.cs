@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,10 +17,6 @@ public class Movement : MonoBehaviour
         {
             _speed = new Vector3(0, (-1)*data.Speed, 0);
         };
-        _inputActions.Movement.Down.canceled += delegate(InputAction.CallbackContext context)
-        {
-            _speed = new Vector3(0, data.Speed, 0);
-        };
     }
 
     private void Update()
@@ -37,21 +31,18 @@ public class Movement : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*data.MaxSpeed);
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (rigidbody.velocity.y > 0)
+        if (transform.position.y > data.MaxHeight)
         {
-            _speed = new Vector3(0, (-1) * data.Speed, 0);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (rigidbody.velocity.y < 0)
-        {
-            _speed = new Vector3(0, data.Speed, 0);
+            if (rigidbody.velocity.y > 0)
+            {
+                _speed = new Vector3(0, (-1) * data.Speed, 0);
+            }
+        }else{ 
+            if ((rigidbody.velocity.y < 0 && !_inputActions.Movement.Down.IsPressed() || transform.position.y < data.MinHeight))
+            {
+                _speed = new Vector3(0, data.Speed, 0);
+            }
         }
     }
 }

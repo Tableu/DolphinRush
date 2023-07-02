@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a91dda4ada8f884686ec4b8e76aee8c, type: 3}
+  m_Name: Obstacles
+  m_EditorClassIdentifier: 
+  obstacles:
+  - Prefab: {fileID: 4663969113336895672, guid: f7f006d7c82343249a00c268aa340341, type: 3}
+    Offset: {x: 25.5, y: -8, z: 16.8}
+  - Prefab: {fileID: 8983603207866591261, guid: 3e3bef834ce560948a9d82e38f8ea531, type: 3}
+    Offset: {x: 1, y: -17.1, z: -1.5}
+  - Prefab: {fileID: 9051370453287063161, guid: 450d00b650a7e2f4191c2976565f0ed1, type: 3}
+    Offset: {x: 1, y: -0.42, z: 0}
+  weights: 050000000500000005000000
+  initialSpeed: 5
+  maxSpeed: 10
+  minimumDistance: 40
+  maxDistance: 60
