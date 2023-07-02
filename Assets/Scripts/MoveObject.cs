@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,10 +15,13 @@ public class MoveObject : MonoBehaviour
         SpeedManager.Instance.SpeedChanged += ChangeSpeed;
         if (collectiblePositions.Count > 0)
         {
-            int index = Random.Range(0, collectiblePositions.Count);
-            Vector3 pos = collectiblePositions[index];
-            var collectible = Instantiate(data.GetRandomCollectible(), transform.position+pos-Offset, Quaternion.identity);
-            collectible.GetComponent<Collectible>().Speed = Speed;
+            int index = Random.Range(0, collectiblePositions.Count+1);
+            if (index <= 0)
+                return;
+            Vector3 pos = collectiblePositions[index-1];
+            var collectiblePrefab = data.GetRandomCollectible();
+            var collectibleObject = Instantiate(collectiblePrefab, transform.position+pos-Offset, collectiblePrefab.transform.rotation);
+            collectibleObject.GetComponent<Collectible>().Speed = Speed;
         }
     }
 

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Collectibles
   m_EditorClassIdentifier: 
   collectibles:
-  - {fileID: 4944524031194297287, guid: 30de075a818a66349859d315c327db0a, type: 3}
-  weights: 0a000000
+  - {fileID: 3770262800794151871, guid: 5f8e5f4dd8c132a4e975a515db80c3af, type: 3}
+  - {fileID: 3453755759952452482, guid: 7c789088b5c52eb4b9c5299b7d77f1b4, type: 3}
+  weights: 0a0000000a000000
