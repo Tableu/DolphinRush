@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   speed: 30
-  maxSpeed: 50
+  maxSpeed: 30
   rotationSpeed: 70
   angle: 45
-  maxHeight: 3.2
-  minHeight: -20
+  maxHeight: 7
+  minHeight: -7
