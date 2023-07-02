@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject model;
     private PlayerInputActions _inputActions;
     private Vector3 _speed;
+    private bool _jumping;
     private void Start()
     {
         _speed = new Vector3(0, data.Speed,0);
@@ -16,6 +17,12 @@ public class Movement : MonoBehaviour
         _inputActions.Movement.Down.started += delegate(InputAction.CallbackContext context)
         {
             _speed = new Vector3(0, (-1)*data.Speed, 0);
+        };
+        
+        _inputActions.Movement.Down.canceled += delegate(InputAction.CallbackContext context)
+        {
+            _speed = new Vector3(0, data.Speed*Mathf.Max((float)context.duration/data.ChargeTime,1f), 0);
+            _jumping = true;
         };
     }
 
@@ -27,22 +34,37 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody.AddForce(_speed, ForceMode.Force);
-        if (Mathf.Abs(rigidbody.velocity.y) > data.MaxSpeed)
+        var maxSpeed = _inputActions.Movement.Down.IsPressed() || _jumping ? data.MaxSpeed : data.IdleMaxSpeed;
+        var correctionSpeed = _inputActions.Movement.Down.IsPressed() || _jumping ? data.CorrectionSpeed : data.IdleCorrectionSpeed;
+        if (Mathf.Abs(rigidbody.velocity.y) > maxSpeed)
         {
-            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*data.MaxSpeed);
+            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*maxSpeed);
+        }
+
+        if (_jumping)
+        {
+            if (rigidbody.velocity.y < 0)
+            {
+                _jumping = false;
+            }
         }
 
         if (transform.position.y > data.MaxHeight)
         {
             if (rigidbody.velocity.y > 0)
             {
-                _speed = new Vector3(0, (-1) * data.Speed, 0);
+                _speed = new Vector3(0, (-1) * correctionSpeed, 0);
             }
         }else{ 
             if ((rigidbody.velocity.y < 0 && !_inputActions.Movement.Down.IsPressed() || transform.position.y < data.MinHeight))
             {
-                _speed = new Vector3(0, data.Speed, 0);
+                _speed = new Vector3(0, correctionSpeed, 0);
             }
         }
+    }
+
+    public void OnCollisionEnter(Collision other)
+    {
+        Destroy(gameObject);
     }
 }

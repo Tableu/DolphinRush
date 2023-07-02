@@ -26,6 +26,6 @@ public class ObstacleSpawner : MonoBehaviour
         var objectScript = obstacleObject.GetComponent<MoveObject>();
         objectScript.Speed = data.InitialSpeed;
         _mostRecentObstacle = obstacleObject;
-        _distance = data.GetRandomDistance() + (-1)*obstacle.Offset.x;
+        _distance = data.GetRandomDistance() + obstacle.Offset.x;
     }
 }
