@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject model;
     private PlayerInputActions _inputActions;
     private Vector3 _speed;
+    private bool _jumping;
     private void Start()
     {
         _speed = new Vector3(0, data.Speed,0);
@@ -18,54 +18,53 @@ public class Movement : MonoBehaviour
         {
             _speed = new Vector3(0, (-1)*data.Speed, 0);
         };
+        
         _inputActions.Movement.Down.canceled += delegate(InputAction.CallbackContext context)
         {
-            _speed = new Vector3(0, data.Speed, 0);
+            _speed = new Vector3(0, data.Speed*Mathf.Max((float)context.duration/data.ChargeTime,1f), 0);
+            _jumping = true;
         };
     }
 
     private void Update()
     {
-        float angle = model.transform.eulerAngles.x;
-        if (_speed.y != 0)
-        {
-            if (_speed.y > 0)
-            {
-                if (angle >= 360 - data.Angle ||
-                    angle <= data.Angle + 3)
-                {
-                    model.transform.Rotate(Vector3.left, data.RotationSpeed * Time.deltaTime);
-                }
-            }
-            else
-            {
-                if (angle <= data.Angle ||
-                    angle >= 360 - data.Angle - 3)
-                {
-                    model.transform.Rotate(Vector3.right, data.RotationSpeed * Time.deltaTime);
-                }
-            }
-        }
+        model.transform.rotation = Quaternion.Euler(data.Angle*-1*(rigidbody.velocity.y/data.MaxSpeed),model.transform.rotation.eulerAngles.y,model.transform.rotation.eulerAngles.z);
     }
 
     private void FixedUpdate()
     {
         rigidbody.AddForce(_speed, ForceMode.Force);
-        if (Mathf.Abs(rigidbody.velocity.y) > data.MaxSpeed)
+        var maxSpeed = _inputActions.Movement.Down.IsPressed() || _jumping ? data.MaxSpeed : data.IdleMaxSpeed;
+        var correctionSpeed = _inputActions.Movement.Down.IsPressed() || _jumping ? data.CorrectionSpeed : data.IdleCorrectionSpeed;
+        if (Mathf.Abs(rigidbody.velocity.y) > maxSpeed)
         {
-            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*data.MaxSpeed);
+            rigidbody.velocity = new Vector3(0, Mathf.Sign(rigidbody.velocity.y)*maxSpeed);
+        }
+
+        if (_jumping)
+        {
+            if (rigidbody.velocity.y < 0)
+            {
+                _jumping = false;
+            }
+        }
+
+        if (transform.position.y > data.MaxHeight)
+        {
+            if (rigidbody.velocity.y > 0)
+            {
+                _speed = new Vector3(0, (-1) * correctionSpeed, 0);
+            }
+        }else{ 
+            if ((rigidbody.velocity.y < 0 && !_inputActions.Movement.Down.IsPressed() || transform.position.y < data.MinHeight))
+            {
+                _speed = new Vector3(0, correctionSpeed, 0);
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
-        rigidbody.velocity = Vector3.zero;
-        _speed = Vector3.zero;
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        rigidbody.velocity = Vector3.zero;
-        _speed = Vector3.zero;
+        Destroy(gameObject);
     }
 }
