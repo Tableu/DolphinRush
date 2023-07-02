@@ -25,7 +25,11 @@ MonoBehaviour:
     Offset: {x: 41.3, y: 9.2, z: -16.8}
   - Prefab: {fileID: 1217264979354021695, guid: 2cfcac08c9d0aed478a13ecd4225df5d, type: 3}
     Offset: {x: -3.2, y: -9.8, z: 0}
-  weights: 050000000500000005000000050000000500000005000000
+  - Prefab: {fileID: 5558964766568329340, guid: 5761f7a2d8a678a41b54556d329e6520, type: 3}
+    Offset: {x: 0, y: 9.8, z: 0}
+  - Prefab: {fileID: 5558964766568329340, guid: 5761f7a2d8a678a41b54556d329e6520, type: 3}
+    Offset: {x: 0, y: -9.8, z: 0}
+  weights: 0500000005000000050000000500000005000000050000000200000002000000
   initialSpeed: 20
   maxSpeed: 20
   minimumDistance: 40
