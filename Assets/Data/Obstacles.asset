@@ -30,6 +30,7 @@ MonoBehaviour:
   - Prefab: {fileID: 5558964766568329340, guid: 5761f7a2d8a678a41b54556d329e6520, type: 3}
     Offset: {x: 0, y: -9.8, z: 0}
   weights: 0500000005000000050000000500000005000000050000000200000002000000
+  speedLevelIndexes: 03000000060000000800000008000000
   initialSpeed: 20
   maxSpeed: 20
   minimumDistance: 40

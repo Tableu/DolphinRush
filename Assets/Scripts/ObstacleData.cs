@@ -8,6 +8,7 @@ public class ObstacleData : ScriptableObject
 {
     [SerializeField] private List<Obstacle> obstacles;
     [SerializeField] private List<int> weights;
+    [SerializeField] private List<int> speedLevelIndexes;
     [SerializeField] private float initialSpeed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minimumDistance;
@@ -15,13 +16,13 @@ public class ObstacleData : ScriptableObject
     public float InitialSpeed => initialSpeed;
     public float MaxSpeed => maxSpeed;
 
-    public Obstacle GetRandomObstacle()
+    public Obstacle GetRandomObstacle(int speedLevel)
     {
         List<int> intervals = new List<int>();
         int totalWeight = 0;
-        foreach (int weight in weights)
+        for(int i = 0; i < speedLevelIndexes[speedLevel]; i++)
         {
-            totalWeight += weight;
+            totalWeight += weights[i];
             intervals.Add(totalWeight);
         }
         

@@ -10,6 +10,8 @@ public class SpeedManager : MonoBehaviour
     public static SpeedManager Instance => _instance;
 
     [SerializeField] private SpeedData data;
+    private int _speedLevel = 0;
+    public int SpeedLevel => _speedLevel;
 
     public float SpeedMultiplier
     {
@@ -33,6 +35,7 @@ public class SpeedManager : MonoBehaviour
         for (int i = 0; i < data.Speeds.Count; i++)
         {
             SpeedMultiplier = data.Speeds[i];
+            _speedLevel = i;
             SpeedChanged?.Invoke();
             yield return new WaitForSeconds(data.Durations[i]);
         }

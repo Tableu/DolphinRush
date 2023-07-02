@@ -23,7 +23,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        var obstacle = data.GetRandomObstacle();
+        var obstacle = data.GetRandomObstacle(SpeedManager.Instance.SpeedLevel);
         var obstacleObject = Instantiate(obstacle.Prefab, transform.position+obstacle.Offset, obstacle.Prefab.transform.rotation);
         var objectScript = obstacleObject.GetComponent<MoveObject>();
         objectScript.Speed = data.InitialSpeed*_speedMultiplier;
