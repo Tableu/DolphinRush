@@ -27,5 +27,6 @@ public class ObstacleSpawner : MonoBehaviour
         objectScript.Speed = data.InitialSpeed;
         _mostRecentObstacle = obstacleObject;
         _distance = data.GetRandomDistance() + Mathf.Abs(obstacle.Offset.x);
+        Debug.Log(_distance);
     }
 }

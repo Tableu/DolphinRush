@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
   - Prefab: {fileID: 4663969113336895672, guid: f7f006d7c82343249a00c268aa340341, type: 3}
-    Offset: {x: 25.5, y: -9.2, z: 16.8}
+    Offset: {x: 41.3, y: -9.2, z: 16.8}
   - Prefab: {fileID: 8983603207866591261, guid: 3e3bef834ce560948a9d82e38f8ea531, type: 3}
-    Offset: {x: 1, y: -20.73, z: -1.5}
+    Offset: {x: -5.5, y: -20.73, z: -1.5}
   - Prefab: {fileID: 9051370453287063161, guid: 450d00b650a7e2f4191c2976565f0ed1, type: 3}
-    Offset: {x: 9, y: 9.8, z: 0}
+    Offset: {x: -3.2, y: 9.8, z: 0}
   - Prefab: {fileID: 2636516483582724011, guid: 08190ba609ad57e47a002a057f7818e4, type: 3}
-    Offset: {x: 1, y: 20.73, z: 1.5}
+    Offset: {x: -5.5, y: 20.73, z: 1.5}
   - Prefab: {fileID: 5729804432414155046, guid: e487a8530a054b94d9f123ad00d121f9, type: 3}
-    Offset: {x: 25.5, y: 9.2, z: -16.8}
+    Offset: {x: 41.3, y: 9.2, z: -16.8}
   - Prefab: {fileID: 1217264979354021695, guid: 2cfcac08c9d0aed478a13ecd4225df5d, type: 3}
-    Offset: {x: 9, y: -9.8, z: 0}
+    Offset: {x: -3.2, y: -9.8, z: 0}
   weights: 050000000500000005000000050000000500000005000000
   initialSpeed: 10
   maxSpeed: 10
-  minimumDistance: 40
+  minimumDistance: 50
   maxDistance: 60
