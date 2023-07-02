@@ -325,7 +325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155490565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1, y: -18.9, z: -0.04799843}
+  m_LocalPosition: {x: -5.1, y: -20, z: -0.04799843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -573,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -581,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -838,9 +838,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 899898581}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 899898585}
   m_SourcePrefab: {fileID: 100100000, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
 --- !u!1 &899898580 stripped
 GameObject:
@@ -873,27 +870,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4fa447e256dd46b47bd41328666e4fd1, type: 3}
   m_PrefabInstance: {fileID: 899898579}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &899898585
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899898580}
-  m_Material: {fileID: 13400000, guid: 4c31e6af143b3f940bbd41eebd4f6526, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.6369247, z: 3.4125922}
-  m_Center: {x: 2.9316522e-15, y: 0.31846237, z: 1.2062964}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,7 +1071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064377064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1, y: 20.5, z: -0.04799843}
+  m_LocalPosition: {x: -5.1, y: 20, z: -0.04799843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1208,6 +1184,7 @@ GameObject:
   - component: {fileID: 2052869425}
   - component: {fileID: 2052869424}
   - component: {fileID: 2052869423}
+  - component: {fileID: 2052869426}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1265,7 +1242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052869422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.44, y: -7.6, z: 28.561916}
+  m_LocalPosition: {x: -23.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1273,3 +1250,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2052869426
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052869422}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 1.23, y: 0.22, z: 0}

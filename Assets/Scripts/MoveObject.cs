@@ -15,7 +15,7 @@ public class MoveObject : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left * (Speed * Time.fixedDeltaTime),Space.World);
-        if (transform.position.x < -40)
+        if (transform.position.x < -50)
         {
             Destroy(gameObject);
         }

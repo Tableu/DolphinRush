@@ -5,12 +5,10 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float speed;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float angle;
-    [SerializeField] private float maxHeight;
-    [SerializeField] private float minHeight;
+    [SerializeField] private float rotateSpeed;
 
     public float Speed => speed;
     public float MaxSpeed => maxSpeed;
     public float Angle => angle;
-    public float MaxHeight => maxHeight;
-    public float MinHeight => minHeight;
+    public float RotateSpeed => rotateSpeed;
 }

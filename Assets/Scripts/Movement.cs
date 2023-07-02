@@ -34,10 +34,10 @@ public class Movement : MonoBehaviour
         if (!_hitBarrier)
         {
             model.transform.rotation = Quaternion.Euler(data.Angle * -1 * (rigidbody.velocity.y / data.MaxSpeed),
-                eulerAngles.y, eulerAngles.z); 
-        }else if (eulerAngles.x > 360-data.Angle-40)
+                eulerAngles.y, eulerAngles.z);
+        }else
         {
-            model.transform.rotation = Quaternion.Lerp(model.transform.rotation, Quaternion.Euler(0f, eulerAngles.y, eulerAngles.z), 1.0f * Time.deltaTime);
+            model.transform.rotation = Quaternion.Slerp(model.transform.rotation, Quaternion.Euler(0f, eulerAngles.y, eulerAngles.z), data.RotateSpeed * Time.deltaTime);
         }
     }
 

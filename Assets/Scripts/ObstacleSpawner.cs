@@ -22,10 +22,10 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnObstacle()
     {
         var obstacle = data.GetRandomObstacle();
-        var obstacleObject = Instantiate(obstacle.Prefab, transform.position+obstacle.Offset, Quaternion.identity);
+        var obstacleObject = Instantiate(obstacle.Prefab, transform.position+obstacle.Offset, obstacle.Prefab.transform.rotation);
         var objectScript = obstacleObject.GetComponent<MoveObject>();
         objectScript.Speed = data.InitialSpeed;
         _mostRecentObstacle = obstacleObject;
-        _distance = data.GetRandomDistance() + obstacle.Offset.x;
+        _distance = data.GetRandomDistance() + Mathf.Abs(obstacle.Offset.x);
     }
 }
