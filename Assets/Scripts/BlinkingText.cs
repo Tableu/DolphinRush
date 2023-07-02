@@ -14,12 +14,6 @@ public class BlinkingText : MonoBehaviour
         StartCoroutine(Blink());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private IEnumerator Blink()
     {
         while (true)

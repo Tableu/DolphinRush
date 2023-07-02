@@ -34,11 +34,12 @@ public class GameStart : MonoBehaviour
         soundEffectSource.Play();
         _inputActions.Disable();
         _inputActions.Dispose();
-        Destroy(spaceText);
+        Destroy(spaceText.gameObject);
         title.enabled = true;
         yield return new WaitForSeconds(menuMusicDelay);
         movement.enabled = true;
         gameSource.Play();
+        StartCoroutine(SpeedManager.Instance.StartSpeed());
         Destroy(title.gameObject);
         yield return new WaitForSeconds(5);
         obstacleSpawner.enabled = true;

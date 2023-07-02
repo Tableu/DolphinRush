@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
+  Rigidbody: {fileID: 0}
 --- !u!1 &6429234385765228301
 GameObject:
   m_ObjectHideFlags: 0

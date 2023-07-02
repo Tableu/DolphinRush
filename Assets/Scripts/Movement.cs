@@ -9,6 +9,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject model;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip deathAudio;
+    [SerializeField] private GameObject deathPrefab;
+    [SerializeField] private GameObject spacePrefab;
+    [SerializeField] private Death death;
+    [SerializeField] private ObstacleSpawner spawner;
     private PlayerInputActions _inputActions;
     private Vector3 _speed;
     private bool _hitBarrier;
@@ -62,6 +66,10 @@ public class Movement : MonoBehaviour
         {
             audioSource.clip = deathAudio;
             audioSource.Play();
+            deathPrefab.SetActive(true);
+            spacePrefab.SetActive(true);
+            death.enabled = true;
+            spawner.enabled = false;
             Destroy(gameObject);
         }
     }
