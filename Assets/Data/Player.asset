@@ -12,13 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fda3fd9b9d9a02409b408356516d0fa, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  speed: 100
-  maxSpeed: 100
-  correctionSpeed: 250
-  idleCorrectionSpeed: 30
-  idleSpeed: 10
-  idleMaxSpeed: 10
+  speed: 50
+  maxSpeed: 50
   angle: 45
-  maxHeight: 0
-  minHeight: -7
-  chargeTime: 0.5
+  maxHeight: 16
+  minHeight: -16
