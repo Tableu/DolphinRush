@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
@@ -15,10 +16,7 @@ public class ParallaxBackground : MonoBehaviour
     void Start()
     {
         _renderer = GetComponent<Renderer>();
-        SpeedManager.Instance.SpeedChanged += delegate
-        {
-            _speedMultiplier = SpeedManager.Instance.SpeedMultiplier;
-        };
+        SpeedManager.Instance.SpeedChanged += ChangeSpeed;
     }
 
     void Update()
@@ -33,5 +31,15 @@ public class ParallaxBackground : MonoBehaviour
                 _renderer.materials[index].mainTextureOffset = offset;
             }
         }
+    }
+
+    private void ChangeSpeed()
+    {
+        _speedMultiplier = SpeedManager.Instance.SpeedMultiplier;
+    }
+
+    private void OnDisable()
+    {
+        SpeedManager.Instance.SpeedChanged -= ChangeSpeed;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
@@ -9,10 +10,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void Start()
     {
        SpawnObstacle();
-       SpeedManager.Instance.SpeedChanged += delegate
-       {
-           _speedMultiplier = SpeedManager.Instance.SpeedMultiplier;
-       };
+       SpeedManager.Instance.SpeedChanged += ChangeSpeed;
     }
 
     private void FixedUpdate()
@@ -31,5 +29,15 @@ public class ObstacleSpawner : MonoBehaviour
         objectScript.Speed = data.InitialSpeed*_speedMultiplier;
         _mostRecentObstacle = obstacleObject;
         _distance = data.GetRandomDistance() + Mathf.Abs(obstacle.Offset.x);
+    }
+
+    private void ChangeSpeed()
+    {
+        _speedMultiplier = SpeedManager.Instance.SpeedMultiplier;
+    }
+
+    private void OnDisable()
+    {
+        SpeedManager.Instance.SpeedChanged -= ChangeSpeed;
     }
 }

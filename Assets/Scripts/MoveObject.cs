@@ -1,8 +1,14 @@
+using System;
 using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
     public float Speed;
+
+    private void Start()
+    {
+        SpeedManager.Instance.SpeedChanged += ChangeSpeed;
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,5 +22,15 @@ public class MoveObject : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void ChangeSpeed()
+    {
+        Speed *= SpeedManager.Instance.SpeedMultiplier;
+    }
+
+    private void OnDisable()
+    {
+        SpeedManager.Instance.SpeedChanged -= ChangeSpeed;
     }
 }
